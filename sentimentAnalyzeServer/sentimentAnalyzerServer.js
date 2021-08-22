@@ -26,21 +26,52 @@ app.get("/",(req,res)=>{
     res.render('index.html');
   });
 
-app.get("/url/emotion", (req,res) => {
-
-    return res.send({"happy":"90","sad":"10"});
+app.get("/url/emotion", async (req,res) => {
+    let nlu = getNLUInstance();
+    let url = req.query.url;
+    let results = await nlu.analyze({
+        'url': url, 
+        'features': {
+            'emotion': {}
+        }
+    });
+    return res.send(results.result.emotion.document.emotion);
 });
 
-app.get("/url/sentiment", (req,res) => {
-    return res.send("url sentiment for "+req.query.url);
+app.get("/url/sentiment", async (req,res) => {
+    let nlu = getNLUInstance();
+    let url = req.query.url;
+    let results = await nlu.analyze({
+        'url': url, 
+        'features': {
+            'sentiment': {}
+        }
+    });
+    return res.send(results.result.sentiment.document);
 });
 
-app.get("/text/emotion", (req,res) => {
-    return res.send({"happy":"10","sad":"90"});
+app.get("/text/emotion", async (req,res) => {
+    let nlu = getNLUInstance();
+    let text = req.query.text;
+    let results = await nlu.analyze({
+        'text': text, 
+        'features': {
+            'emotion': {}
+        }
+    });
+    return res.send(results.result.emotion.document.emotion);
 });
 
-app.get("/text/sentiment", (req,res) => {
-    return res.send("text sentiment for "+req.query.text);
+app.get("/text/sentiment", async (req,res) => {
+    let nlu = getNLUInstance();
+    let text = req.query.text;
+    let results = await nlu.analyze({
+        'text': text, 
+        'features': {
+            'sentiment': {}
+        }
+    });
+    return res.send(results.result.sentiment.document);
 });
 
 let server = app.listen(8080, () => {
