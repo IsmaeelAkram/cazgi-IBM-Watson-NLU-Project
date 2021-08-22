@@ -47,7 +47,7 @@ app.get("/url/sentiment", async (req,res) => {
             'sentiment': {}
         }
     });
-    return res.send(results.result.sentiment.document);
+    return res.send(results.result.sentiment.document.label);
 });
 
 app.get("/text/emotion", async (req,res) => {
@@ -71,7 +71,7 @@ app.get("/text/sentiment", async (req,res) => {
             'sentiment': {}
         }
     });
-    return res.send(results.result.sentiment.document);
+    return res.send(results.result.sentiment.document.label);
 });
 
 let server = app.listen(8080, () => {
