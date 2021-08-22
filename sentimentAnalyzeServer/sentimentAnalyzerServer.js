@@ -38,7 +38,7 @@ app.get("/url/emotion", async (req, res) => {
     });
     return res.send(results.result.emotion.document.emotion);
   } catch (e) {
-    return res.status(500).send("Error: " + e);
+    return res.status(500).send(e);
   }
 });
 
@@ -54,7 +54,7 @@ app.get("/url/sentiment", async (req, res) => {
     });
     return res.send(results.result.sentiment.document.label);
   } catch (e) {
-    return res.status(500).send("Error: " + e);
+    return res.status(500).send(e);
   }
 });
 
@@ -70,7 +70,7 @@ app.get("/text/emotion", async (req, res) => {
     });
     return res.send(results.result.emotion.document.emotion);
   } catch (e) {
-    return res.status(500).send("Error: " + e);
+    return res.status(500).send(e);
   }
 });
 
@@ -86,7 +86,7 @@ app.get("/text/sentiment", async (req, res) => {
     });
     return res.send(results.result.sentiment.document.label);
   } catch (e) {
-    return res.status(500).send("Error: " + e);
+    return res.status(500).send(e);
   }
 });
 
